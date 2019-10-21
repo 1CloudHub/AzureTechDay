@@ -1,0 +1,10 @@
+replicaCount: 1
+image:
+  useImagePullSecrets: true
+  pullPolicy: Always
+service:
+  internalPort: 80
+  externalPort: 80
+ingress:
+  enabled: true
+  basedomain: <fxxxxxxxxxxxxxxxx6f>.southeastasia.aksapp.io ##Update basedomain value ##
