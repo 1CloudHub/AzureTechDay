@@ -1,5 +1,18 @@
-# AzureTechDay
 # Azure-AKS
+## What's covered in this guide,
+
+The following tasks will be performed:
+
+Creating an Azure Container Registry (ACR), AKS cluster 
+
+### Pre-requisites 
+•	Azure Subscription
+•	Azure DevOps account
+•	Bash Shell ( Azure Cloud Shell)
+•	Container registry
+•	Visual Studio Code
+
+
 ### Infrastructure Setup
 #### Creating a Resource Group
 A resource group is a logical way to organize instances you spin up on Azure. 
