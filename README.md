@@ -1,17 +1,19 @@
-# Azure-AKS
-## What's covered in this guide,
+## Deploy an application on AKS cluster using Azure DevOps
+
+###  What's covered in this guide,
 
 The following tasks will be performed:
-
-Creating an Azure Container Registry (ACR), AKS cluster 
+- Creating a Resource group and configure Azure cloud shell
+- Creating an Azure Container Registry (ACR), AKS cluster
+- Setting up Azure DevOps account
+- Creating Azure build and release pipelines for application automation
 
 ### Pre-requisites 
-•	Azure Subscription
-•	Azure DevOps account
-•	Bash Shell ( Azure Cloud Shell)
-•	Container registry
-•	Visual Studio Code
-
+- Azure Subscription
+- Azure DevOps account
+- Bash Shell ( Azure Cloud Shell)
+- Container registry
+- Visual Studio Code
 
 ### Infrastructure Setup
 #### Creating a Resource Group
@@ -227,12 +229,19 @@ Now, run the below Azure CLI commands from Azure Cloud Shell to check on the ima
 Now, both Docker image and Helm chart can be used for any Kubernetes cluster. 
 Navigate to **Kubernetes Service** and Click on the cluster created above. 
  
-Copy HTTP application routing domain value and update values.yaml file.
+ ![aks](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/aks-1.png "aks")
+ 
+Copy **HTTP application routing domain** value and update **values.yaml** file.
+
 Navigate to **AzureDevOps-->Projects-->Repos** and select **values.yaml** file to update the domain value,
+
+![values](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/values.png "values")
  
 Update the base domain value in values.yaml file
 
-Edit and commit the changes
+**Edit** and **commit** the changes
+
+![edit](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/edit-and-commit-buils.png "edit")
  
 **Create Release Pipeline**
 
@@ -380,24 +389,40 @@ Once deployed successfully, we can run the below commands from Azure Cloud Shell
 `$ kubectl get all -n helloworld`
 `$ kubectl get ing -n helloworld`
 
+![validation](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/validation-1.png "validation")
+
 Navigate to below URL in web browser
 `http://<HOSTS>/ `
 ***replace the hosts value*
  
+![validation](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/validation-2.png "validation")
+ 
 We have successfully deployed the simple helloworld python app on Kubernetes cluster via a Helm Chart.
+
 Now you can make the changes to your code and push it to Azure Repo and Azure pipelines will automatically build and release the new version. 
+
 Updated the source code and pushed it to Azure repo using Git commands.
  
-Azure build pipeline is initiated once the code is pushed to Repo
+ ![validation](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/validation-3.png "validation")
  
-Azure release pipeline initiated once build is completed. 
+Azure build pipeline is initiated once the code is pushed to Repo
+
+![validation](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/validation-4.png "validation")
+ 
+Azure release pipeline initiated once build is completed.
+
+![validation](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/validation-5.png "validation")
  
 Now, refresh the URL to view the changes,
+
+![validation](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/validation-6.png "validation")
  
 Update the replicaCount as 3 in values.yaml file and commit the changes either through VS code or Azure repo.
+
+![validation](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/validation-7.png "validation")
  
 Once Build and Release pipelines are successfully configured, you can see the increase in number pods using below command. Now application is running on 3 nodes. 
 
 `$ kubectl get pods -o wide -n helloworld`
 
-###End
+![validation](https://github.com/1CloudHub/Azure-AKS/blob/master/Images/validation-8.png "validation")
